@@ -2,9 +2,46 @@
 
 import { usePosts } from '../app/hooks/usePosts';
 import PostCard from '../app/components/PostCard';
+import SearchBar from '../app/components/searchBar';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../app/lib/firebase';
 
 export default function Home() {
-  const { posts, loading, error } = usePosts(); // Fetch all published posts
+  const { posts, loading, error } = usePosts();
+  const [popularTags, setPopularTags] = useState<string[]>([]);
+
+  // Get popular tags
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const postsSnapshot = await getDocs(collection(db, 'posts'));
+        const tagCounts: { [key: string]: number } = {};
+
+        postsSnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.tags && Array.isArray(data.tags)) {
+            data.tags.forEach((tag: string) => {
+              tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+            });
+          }
+        });
+
+        // Get top 10 tags
+        const sortedTags = Object.entries(tagCounts)
+          .sort(([, a], [, b]) => b - a)
+          .slice(0, 10)
+          .map(([tag]) => tag);
+
+        setPopularTags(sortedTags);
+      } catch (err) {
+        console.error('Error fetching tags:', err);
+      }
+    };
+
+    fetchTags();
+  }, []);
 
   if (loading) {
     return (
@@ -24,7 +61,7 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
-      {/* Hero Section */}
+      {/* Hero Section with Search */}
       <div className="text-center mb-16">
         <h1 className="text-6xl font-bold mb-6">
           Stay curious.
@@ -32,6 +69,29 @@ export default function Home() {
         <p className="text-xl text-gray-600 mb-8">
           Discover stories, thinking, and expertise from writers on any topic.
         </p>
+        
+        {/* Search Bar */}
+        <div className="flex justify-center mb-8">
+          <SearchBar />
+        </div>
+
+        {/* Popular Tags */}
+        {popularTags.length > 0 && (
+          <div className="mt-8">
+            <p className="text-sm text-gray-600 mb-3">Popular tags:</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {popularTags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/tag/${tag}`}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm transition"
+                >
+                  #{tag}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Posts Grid */}
@@ -41,11 +101,14 @@ export default function Home() {
           <p className="text-gray-500">Be the first to share your story!</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        <>
+          <h2 className="text-3xl font-bold mb-8">Latest Posts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
