@@ -216,7 +216,7 @@ export default function Comments({ postId }: CommentsProps) {
                 className="w-10 h-10 rounded-full object-cover"
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-white">
+              <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center font-bold text-white">
                 {user.displayName.charAt(0).toUpperCase()}
               </div>
             )}
@@ -232,14 +232,14 @@ export default function Comments({ postId }: CommentsProps) {
             <button
               type="submit"
               disabled={submitting || !newComment.trim()}
-              className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 disabled:bg-gray-400"
+              className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 "
             >
               {submitting ? 'Posting...' : 'Post'}
             </button>
           </div>
         </form>
       ) : (
-        <div className="mb-8 p-6 bg-gray-50 rounded-lg text-center">
+        <div className="mb-8 p-6 bg-gray-500 rounded-lg text-center">
           <p className="text-gray-600 mb-3">Sign in to join the conversation</p>
           <Link
             href="/login"

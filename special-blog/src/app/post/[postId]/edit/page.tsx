@@ -113,7 +113,7 @@ export default function EditPostPage() {
         <div className="flex gap-4">
           <button
             onClick={() => router.back()}
-            className="px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50"
+            className="px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-800"
           >
             Cancel
           </button>

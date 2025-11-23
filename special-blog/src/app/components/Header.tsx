@@ -7,7 +7,7 @@ export default function Header() {
   const { user, logout } = useAuth();
 
   return (
-    <header className="border-b border-gray-200">
+    <header className=" bg-gradient-to-br from-violet-900 via-purple-500 to-fuchsia-800 border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold">
@@ -19,15 +19,15 @@ export default function Header() {
           {user ? (
             // Logged in
             <>
-              <Link href="/write" className="text-gray-600 hover:text-gray-900">
+              <Link href="/write" className="text-gray-800 hover:text-gray-900">
                 Write
               </Link>
-              <Link href={`/profile/${user.uid}`} className="text-gray-600 hover:text-gray-900">
+              <Link href={`/profile/${user.uid}`} className="text-gray-800 hover:text-gray-900">
                 Profile
               </Link>
               <button 
                 onClick={logout}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-gray-800 hover:text-gray-900"
               >
                 Logout
               </button>
@@ -39,15 +39,15 @@ export default function Header() {
           ) : (
             // Not logged in
             <>
-              <Link href="/write" className="text-gray-600 hover:text-gray-900">
-                Our stories
+              <Link href="/write" className="text-blue-800 hover:text-blue-700 underline">
+                Write
               </Link>
-              <Link href="/login" className="text-gray-600 hover:text-gray-900">
+              <Link href="/login" className="text-blue-800 hover:text-blue-700 underline">
                 Sign In
               </Link>
               <Link 
                 href="/signup" 
-                className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800"
+                className="bg-blue-700 text-white px-4 py-2 rounded-full hover:bg-blue-900"
               >
                 Get Started
               </Link>

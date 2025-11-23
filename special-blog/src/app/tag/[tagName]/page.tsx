@@ -117,7 +117,7 @@ export default function TagPage() {
       {posts.length === 0 ? (
         <div className="text-center py-16 border border-gray-200 rounded-lg">
           <p className="text-xl text-gray-600 mb-2">No posts found with this tag</p>
-          <Link href="/" className="text-blue-600 hover:underline">
+          <Link href="/" className="text-blue-500 hover:underline">
             Explore all posts
           </Link>
         </div>

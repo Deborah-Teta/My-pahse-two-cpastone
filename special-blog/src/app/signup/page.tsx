@@ -42,8 +42,8 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold text-center mb-8">Join Medium Clone</h1>
+    <div className=" max-w-md mx-auto px-4 py-16 bg-gradient-to-br from-violet-900 via-purple-400 to-fuchsia-800 rounded-lg overflow-hidden">
+      <h1 className="text-4xl font-bold text-center mb-8">Join Special blog</h1>
       
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -94,9 +94,9 @@ export default function SignupPage() {
         </button>
       </form>
 
-      <p className="text-center mt-6 text-gray-600">
+      <p className="text-center mt-6 text-green-600">
         Already have an account?{' '}
-        <Link href="/login" className="text-black font-medium hover:underline">
+        <Link href="/login" className="text-gray-200 font-medium hover:underline">
           Sign in
         </Link>
       </p>

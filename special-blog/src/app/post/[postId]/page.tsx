@@ -182,7 +182,7 @@ export default function PostPage() {
             <Link
               key={index}
               href={`/tag/${tag}`}
-              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200"
+              className="bg-gray-700 text-white px-3 py-1 rounded-full text-sm hover:bg-gray-900"
             >
               #{tag}
             </Link>
@@ -203,7 +203,7 @@ export default function PostPage() {
           initialLikes={post.likes} 
           likedBy={post.likedBy}
         />
-        <div className="flex items-center gap-2 text-gray-600">
+        <div className="flex items-center gap-2 text-gray-200">
           <span className="text-2xl">👁️</span>
           <span>{post.views} views</span>
         </div>

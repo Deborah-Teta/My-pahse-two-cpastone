@@ -73,7 +73,7 @@ export default function PostCard({ post }: PostCardProps) {
             {post.authorName.charAt(0).toUpperCase()}
           </div>
         )}
-        <span className="text-sm text-gray-600">{post.authorName}</span>
+        <span className="text-sm text-gray-200">{post.authorName}</span>
       </div>
 
       {/* Title */}
@@ -82,7 +82,7 @@ export default function PostCard({ post }: PostCardProps) {
       </h3>
 
       {/* Content Preview */}
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-100 mb-4">
         {getTextPreview(post.content)}
       </p>
 
@@ -93,7 +93,7 @@ export default function PostCard({ post }: PostCardProps) {
             <button
               key={index}
               onClick={(e) => handleTagClick(e, tag)}
-              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition"
+              className="bg-gray-800 text-white px-3 py-1 rounded-full text-sm hover:bg-gray-900 transition"
             >
               #{tag}
             </button>
@@ -102,7 +102,7 @@ export default function PostCard({ post }: PostCardProps) {
       )}
 
       {/* Meta Info */}
-      <div className="flex items-center gap-4 text-sm text-gray-500">
+      <div className="flex items-center gap-4 text-sm text-gray-200">
         <span>{formatDate(post.createdAt)}</span>
         <span>·</span>
         <span>{calculateReadTime(post.content)}</span>

@@ -49,7 +49,7 @@ export default function ProfilePage() {
               className="w-24 h-24 rounded-full object-cover"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-3xl font-bold text-white">
+            <div className="w-24 h-24 rounded-full bg-gray-500 flex items-center justify-center text-3xl font-bold text-white">
               {profileUser.displayName.charAt(0).toUpperCase()}
             </div>
           )}
@@ -58,10 +58,10 @@ export default function ProfilePage() {
         {/* User Info */}
         <div className="flex-1">
           <h1 className="text-4xl font-bold mb-2">{profileUser.displayName}</h1>
-          <p className="text-gray-600 mb-4">{profileUser.email}</p>
+          <p className="text-gray-400 mb-4">{profileUser.email}</p>
           
           {profileUser.bio && (
-            <p className="text-gray-700 mb-4">{profileUser.bio}</p>
+            <p className="text-gray-100 mb-4">{profileUser.bio}</p>
           )}
 
           {isOwnProfile && (
@@ -95,7 +95,7 @@ export default function ProfilePage() {
           <div className="text-center py-8">Loading posts...</div>
         ) : posts.length === 0 ? (
           <div className="text-center py-16 border border-gray-200 rounded-lg">
-            <p className="text-xl text-gray-600 mb-4">
+            <p className="text-xl text-gray-100 mb-4">
               {isOwnProfile ? "You haven't written any posts yet." : "This user hasn't written any posts yet."}
             </p>
             {isOwnProfile && (
@@ -108,7 +108,7 @@ export default function ProfilePage() {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-6 bg-gradient-to-br from-violet-00 via-purple-600 to-fuchsia-00">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}

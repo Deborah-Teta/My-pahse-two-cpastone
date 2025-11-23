@@ -35,7 +35,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16">
+    <div className="max-w-md mx-auto px-4 py-16 bg-gradient-to-br from-violet-900 via-purple-400 to-fuchsia-800 rounded-lg">
       <h1 className="text-4xl font-bold text-center mb-8">Welcome back</h1>
       
       {error && (
@@ -76,9 +76,9 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <p className="text-center mt-6 text-gray-600">
+      <p className="text-center mt-6 text-green-600">
         Don't have an account?{' '}
-        <Link href="/signup" className="text-black font-medium hover:underline">
+        <Link href="/signup" className="text-gray-200 font-medium hover:underline">
           Sign up
         </Link>
       </p>

@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen bg-sky-950 ">
           {children}
         </main>
         <Footer />

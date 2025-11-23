@@ -166,7 +166,7 @@ export default function WritePage() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
-        className="w-full text-4xl font-bold mb-6 focus:outline-none placeholder-gray-300"
+        className="w-full text-4xl font-bold mb-6 focus:outline-none placeholder-gray-500"
       />
 
       {/* Cover Image URL (optional) */}
@@ -185,7 +185,7 @@ export default function WritePage() {
       )}
 
       {/* Rich Text Editor */}
-      <div className="mb-6">
+      <div className="mb-6 bg-gradient-to-br from-violet-00 via-purple-600 to-fuchsia-00">
         <TextEditor content={content} onChange={setContent} />
       </div>
 
