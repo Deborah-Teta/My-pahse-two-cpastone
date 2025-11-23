@@ -3,19 +3,22 @@
 import { useParams } from 'next/navigation';
 import { useAuth } from '../../lib/AuthContext';
 import { useUser } from '../../hooks/useUser';
+import { usePosts } from '../../hooks/usePosts';
 import Link from 'next/link';
+import PostCard from '../../components/PostCard';
 
 export default function ProfilePage() {
   const params = useParams();
   const userId = params.userId as string;
   
-  const { user: currentUser } = useAuth(); // The logged-in user
-  const { user: profileUser, loading, error } = useUser(userId); // The profile we're viewing
-
-  // Check if viewing own profile
+  const { user: currentUser } = useAuth();
+  const { user: profileUser, loading: userLoading, error: userError } = useUser(userId);
+  
+  // Fetch user's posts (include drafts if viewing own profile)
   const isOwnProfile = currentUser?.uid === userId;
+  const { posts, loading: postsLoading } = usePosts(userId, isOwnProfile);
 
-  if (loading) {
+  if (userLoading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="text-center">Loading profile...</div>
@@ -23,11 +26,11 @@ export default function ProfilePage() {
     );
   }
 
-  if (error || !profileUser) {
+  if (userError || !profileUser) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="text-center text-red-600">
-          {error || 'User not found'}
+          {userError || 'User not found'}
         </div>
       </div>
     );
@@ -74,39 +77,41 @@ export default function ProfilePage() {
 
       {/* User's Posts Section */}
       <div>
-        <h2 className="text-2xl font-bold mb-6">
-          {isOwnProfile ? 'Your Posts' : `Posts by ${profileUser.displayName}`}
-        </h2>
-
-        {/* Placeholder for posts - we'll add real posts later */}
-        <div className="space-y-6">
-          {[1, 2, 3].map((item) => (
-            <div key={item} className="border-b border-gray-200 pb-6">
-              <h3 className="text-xl font-bold mb-2 hover:underline cursor-pointer">
-                Sample Post Title {item}
-              </h3>
-              <p className="text-gray-600 mb-3">
-                This is a preview of a blog post. We'll load real posts here soon...
-              </p>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <span>5 min read</span>
-                <span>·</span>
-                <span>Oct 15, 2024</span>
-                <span>·</span>
-                <span>👏 24 claps</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {isOwnProfile && (
-          <div className="text-center mt-12">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">
+            {isOwnProfile ? 'Your Posts' : `Posts by ${profileUser.displayName}`}
+          </h2>
+          {isOwnProfile && (
             <Link
               href="/write"
-              className="inline-block bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800"
+              className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800"
             >
-              Write a new post
+              Write new post
             </Link>
+          )}
+        </div>
+
+        {postsLoading ? (
+          <div className="text-center py-8">Loading posts...</div>
+        ) : posts.length === 0 ? (
+          <div className="text-center py-16 border border-gray-200 rounded-lg">
+            <p className="text-xl text-gray-600 mb-4">
+              {isOwnProfile ? "You haven't written any posts yet." : "This user hasn't written any posts yet."}
+            </p>
+            {isOwnProfile && (
+              <Link
+                href="/write"
+                className="inline-block bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800"
+              >
+                Write your first post
+              </Link>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
           </div>
         )}
       </div>

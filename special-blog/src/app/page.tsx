@@ -1,4 +1,27 @@
+'use client';
+
+import { usePosts } from '../app/hooks/usePosts';
+import PostCard from '../app/components/PostCard';
+
 export default function Home() {
+  const { posts, loading, error } = usePosts(); // Fetch all published posts
+
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center">Loading posts...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center text-red-600">Error loading posts: {error}</div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
       {/* Hero Section */}
@@ -9,27 +32,21 @@ export default function Home() {
         <p className="text-xl text-gray-600 mb-8">
           Discover stories, thinking, and expertise from writers on any topic.
         </p>
-        <button className="bg-black text-white px-8 py-3 rounded-full text-lg hover:bg-gray-800">
-          Start reading
-        </button>
       </div>
 
-      {/* Placeholder for posts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
-          <div key={item} className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
-            <div className="h-48 bg-gray-200 rounded mb-4"></div>
-            <h3 className="text-xl font-bold mb-2">Sample Post Title</h3>
-            <p className="text-gray-600 mb-4">
-              This is a preview of a blog post. Click to read more...
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-              <span className="text-sm text-gray-500">Author Name</span>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Posts Grid */}
+      {posts.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-xl text-gray-600 mb-4">No posts yet.</p>
+          <p className="text-gray-500">Be the first to share your story!</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
