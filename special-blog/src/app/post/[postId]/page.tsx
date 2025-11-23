@@ -2,11 +2,13 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { doc, getDoc, updateDoc, deleteDoc, increment } from 'firebase/firestore';
+import { doc, getDoc, deleteDoc, increment, updateDoc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../lib/AuthContext';
 import { Post } from '../../types';
 import Link from 'next/link';
+import LikeButton from '../../components/LikeButton';
+import Comments from '../../components/comments';
 
 export default function PostPage() {
   const params = useParams();
@@ -177,12 +179,13 @@ export default function PostPage() {
       {post.tags && post.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-8">
           {post.tags.map((tag, index) => (
-            <span
+            <Link
               key={index}
-              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+              href={`/tag/${tag}`}
+              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200"
             >
               #{tag}
-            </span>
+            </Link>
           ))}
         </div>
       )}
@@ -193,17 +196,21 @@ export default function PostPage() {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      {/* Stats */}
-      <div className="flex items-center gap-6 py-6 border-t border-gray-200">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">👏</span>
-          <span className="text-gray-600">{post.likes} claps</span>
-        </div>
-        <div className="flex items-center gap-2">
+      {/* Like Button & Stats */}
+      <div className="flex items-center gap-6 py-6 border-t border-b border-gray-200">
+        <LikeButton 
+          postId={postId} 
+          initialLikes={post.likes} 
+          likedBy={post.likedBy}
+        />
+        <div className="flex items-center gap-2 text-gray-600">
           <span className="text-2xl">👁️</span>
-          <span className="text-gray-600">{post.views} views</span>
+          <span>{post.views} views</span>
         </div>
       </div>
+
+      {/* Comments Section */}
+      <Comments postId={postId} />
 
       {/* Back to home */}
       <div className="mt-12 pt-8 border-t border-gray-200">
