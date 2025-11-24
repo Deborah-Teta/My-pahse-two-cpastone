@@ -85,7 +85,7 @@ A full-featured blogging platform built with Next.js, React, Firebase, and TypeS
 
 Before you begin, ensure you have the following installed:
 - **Node.js** (v18.0 or higher)
-- **npm** or **yarn** package manager
+- **npm** package manager
 - A **Firebase account** (free tier works)
 
 ## 🛠️ Installation
@@ -209,119 +209,6 @@ medium-clone/
 3. Popular tags displayed on home page
 4. Related tags shown on tag pages
 
-## 🎨 Customization
-
-### Change Color Theme
-
-Edit the gradient colors in `app/page.tsx`:
-
-```typescript
-// Hero section
-className="bg-gradient-to-br from-YOUR-COLOR via-YOUR-COLOR to-YOUR-COLOR"
-
-// Buttons
-className="bg-gradient-to-r from-YOUR-COLOR to-YOUR-COLOR"
-```
-
-Popular combinations:
-- Ocean: `from-cyan-500 via-blue-500 to-indigo-600`
-- Sunset: `from-orange-400 via-pink-500 to-purple-600`
-- Forest: `from-emerald-400 via-teal-500 to-cyan-600`
-
-### Modify Editor Toolbar
-
-Edit `components/TextEditor.tsx` to add/remove formatting buttons.
-
-## 📱 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. Import your repository
-4. Vercel will auto-detect Next.js
-5. Click "Deploy"
-
-### Environment Variables
-
-No environment variables needed as Firebase config is in the code. For production, consider moving config to environment variables.
-
-## 🔒 Security Notes
-
-### Firestore Security Rules
-
-Update your Firestore rules for production:
-
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Users collection
-    match /users/{userId} {
-      allow read: if true;
-      allow write: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Posts collection
-    match /posts/{postId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && 
-        request.auth.uid == resource.data.authorId;
-    }
-    
-    // Comments collection
-    match /comments/{commentId} {
-      allow read: if true;
-      allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && 
-        request.auth.uid == resource.data.authorId;
-    }
-  }
-}
-```
-
-## 🐛 Troubleshooting
-
-### Firebase Index Errors
-If you see "requires an index" errors:
-1. Click the link in the error message
-2. Firebase will create the index automatically
-3. Wait 1-2 minutes for index to build
-4. Refresh your app
-
-### Dark Mode Not Persisting
-Clear your localStorage and try again:
-```javascript
-localStorage.clear()
-```
-
-### Posts Not Appearing
-1. Check Firebase Console > Firestore
-2. Verify posts collection exists
-3. Check that `isDraft` is set to `false`
-4. Verify Firestore rules allow reading
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👨‍💻 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-
 ## 🙏 Acknowledgments
 
 - [Next.js Documentation](https://nextjs.org/docs)
@@ -330,19 +217,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Tailwind CSS](https://tailwindcss.com)
 - [React Query](https://tanstack.com/query)
 
-## 📸 Screenshots
-
-### Home Page
-![Home Page](screenshots/home.png)
-
-### Post Editor
-![Editor](screenshots/editor.png)
-
-### Dark Mode
-![Dark Mode](screenshots/dark-mode.png)
-
 ---
 
 Here is the deployed link: https://my-pahse-two-cpastone.vercel.app/
 
-If you found this project helpful, please give it a ⭐!
