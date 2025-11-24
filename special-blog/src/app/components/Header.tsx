@@ -19,6 +19,9 @@ export default function Header() {
           {user ? (
             // Logged in
             <>
+              <Link href="/feed" className="text-gray-800  hover:text-gray-900">
+               My Feed
+              </Link>
               <Link href="/write" className="text-gray-800 hover:text-gray-900">
                 Write
               </Link>
@@ -39,15 +42,15 @@ export default function Header() {
           ) : (
             // Not logged in
             <>
-              <Link href="/write" className="text-blue-800 hover:text-blue-700 underline">
+              <Link href="/write" className="text-gray-800 hover:text-blue-700 ">
                 Write
               </Link>
-              <Link href="/login" className="text-blue-800 hover:text-blue-700 underline">
+              <Link href="/login" className="text-gray-800 hover:text-blue-700 ">
                 Sign In
               </Link>
               <Link 
                 href="/signup" 
-                className="bg-blue-700 text-white px-4 py-2 rounded-full hover:bg-blue-900"
+                className="bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-blue-900"
               >
                 Get Started
               </Link>

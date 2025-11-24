@@ -6,6 +6,7 @@ import { useUser } from '../../hooks/useUser';
 import { usePosts } from '../../hooks/usePosts';
 import Link from 'next/link';
 import PostCard from '../../components/PostCard';
+import FollowButton from '../../components/FollowButton';
 
 export default function ProfilePage() {
   const params = useParams();
@@ -64,14 +65,17 @@ export default function ProfilePage() {
             <p className="text-gray-100 mb-4">{profileUser.bio}</p>
           )}
 
-          {isOwnProfile && (
+          {isOwnProfile ? (
             <Link
               href="/profile/edit"
               className="inline-block bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800"
             >
               Edit Profile
             </Link>
+          ) : (
+            <FollowButton authorId={userId} size="medium" />
           )}
+          
         </div>
       </div>
 
