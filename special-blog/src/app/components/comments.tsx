@@ -19,7 +19,7 @@ export default function Comments({ postId }: CommentsProps) {
   const [submitting, setSubmitting] = useState(false);
   const [replyTo, setReplyTo] = useState<string | null>(null);
 
-  // Fetch comments
+
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -40,7 +40,7 @@ export default function Comments({ postId }: CommentsProps) {
           } as Comment);
         });
 
-        // Sort by date
+        
         commentsData.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
         setComments(commentsData);
       } catch (error) {
@@ -142,11 +142,11 @@ export default function Comments({ postId }: CommentsProps) {
 
         {/* Comment Content */}
         <div className="flex-1">
-          <div className="bg-gray-50 rounded-lg px-4 py-3">
+          <div className="bg-gradient-to-br from-violet-00 via-purple-600 to-fuchsia-00 rounded-lg px-4 py-3">
             <Link href={`/profile/${comment.authorId}`}>
               <p className="font-medium text-sm mb-1 hover:underline">{comment.authorName}</p>
             </Link>
-            <p className="text-gray-800">{comment.content}</p>
+            <p className="text-gray-200">{comment.content}</p>
           </div>
           
           {/* Comment Actions */}

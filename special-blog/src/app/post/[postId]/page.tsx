@@ -9,6 +9,7 @@ import { Post } from '../../types';
 import Link from 'next/link';
 import LikeButton from '../../components/LikeButton';
 import Comments from '../../components/comments';
+import FollowButton from '../../components/FollowButton';
 
 export default function PostPage() {
   const params = useParams();
@@ -133,7 +134,7 @@ export default function PostPage() {
               </div>
             )}
           </Link>
-          <div>
+          <div className="flex-1">
             <Link href={`/profile/${post.authorId}`}>
               <p className="font-medium hover:underline">{post.authorName}</p>
             </Link>
@@ -143,6 +144,9 @@ export default function PostPage() {
               <span>{calculateReadTime(post.content)}</span>
             </div>
           </div>
+          {!isAuthor && user && (
+            <FollowButton authorId={post.authorId} size="small" />
+          )}
         </div>
 
         {/* Edit/Delete buttons (only for author) */}
