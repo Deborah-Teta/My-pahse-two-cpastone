@@ -1,4 +1,4 @@
-# 📝 Medium Clone - A Modern Publishing Platform
+# 📝 Special Blog - A Modern Publishing Platform
 
 A full-featured blogging platform built with Next.js, React, Firebase, and TypeScript. Share your stories, connect with readers, and engage with a vibrant community of writers.
 
@@ -343,6 +343,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Made with ❤️ and ☕**
+Here is the deployed link: https://my-pahse-two-cpastone.vercel.app/
 
 If you found this project helpful, please give it a ⭐!
