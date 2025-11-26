@@ -48,7 +48,7 @@ export function useFollow(authorId: string) {
       const currentUserRef = doc(db, 'users', user.uid);
 
       if (isFollowing) {
-        // Unfollow
+        
         await updateDoc(authorRef, {
           followers: arrayRemove(user.uid)
         });
