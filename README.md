@@ -1,4 +1,4 @@
-# 📝 Special Blog - A Modern Publishing Platform
+#  Special Blog - A Modern Publishing Platform
 
 A full-featured blogging platform built with Next.js, React, Firebase, and TypeScript. Share your stories, connect with readers, and engage with a vibrant community of writers.
 
@@ -42,53 +42,38 @@ A full-featured blogging platform built with Next.js, React, Firebase, and TypeS
 - Comment system with nested replies
 - Thread-based conversations
 - View counter for posts
-- Author following (ready for implementation)
+- Author following
 
 ### 🎨 Modern UI/UX
-- **Beautiful gradient design** with purple-to-pink theme
-- Animated background blobs
-- **Dark mode support** with theme persistence
-- Responsive design (mobile, tablet, desktop)
-- Smooth transitions and hover effects
-- Glass-morphism effects
+- Beautiful gradient design with purple-to-pink them
 - Loading states with spinners
-
-### ⚡ Performance & Optimization
-- React Query for data caching and optimization
-- Optimistic UI updates
-- Server-side rendering (SSR)
-- Static site generation (SSG) ready
-- Image optimization
-- Code splitting
-
-## 🚀 Tech Stack
+## Tech Stack
 
 ### Frontend
-- **Next.js 16** - React framework with App Router
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first styling
-- **Tiptap** - Rich text editor
-- **React Query** - Data fetching and caching
+- Next.js  - React framework with App Router
+- React 19 - UI library
+- TypeScript - Type safety
+- Tailwind CSS - Utility-first styling
+- Tiptap - Rich text editor
+- React Query - Data fetching and caching
 
 ### Backend & Database
-- **Firebase Authentication** - User management
-- **Cloud Firestore** - NoSQL database
-- **Firebase Hosting** - Deployment (optional)
+- Firebase Authentication - User management
+- **Firebase Hosting - Deployment (optional)
 
 ### Development Tools
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **Turbopack** - Fast development server
+- ESLint - Code linting
+- Prettier - Code formatting
+- Turbopack - Fast development server
 
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
-- **Node.js** (v18.0 or higher)
-- **npm** package manager
-- A **Firebase account** (free tier works)
+- Node.js(v18.0 or higher)
+- npm package manager
+- A Firebase account(free tier works)
 
-## 🛠️ Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -108,8 +93,8 @@ npm install
 1. Go to [Firebase Console](https://console.firebase.google.com)
 2. Create a new project
 3. Enable the following services:
-   - **Authentication** (Email/Password)
-   - **Firestore Database** (Start in test mode)
+   - Authentication (Email/Password)
+   - Firestore Database(Start in test mode)
 4. Get your Firebase configuration:
    - Go to Project Settings > General
    - Scroll to "Your apps" section
@@ -120,16 +105,7 @@ npm install
 
 Open `lib/firebase.ts` and replace the configuration:
 
-```typescript
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-```
+  
 
 ### 5. Set up Firestore indexes
 
@@ -147,38 +123,38 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```
 medium-clone/
-├── app/                      # Next.js App Router
-│   ├── login/               # Login page
-│   ├── signup/              # Signup page
-│   ├── write/               # Create/Edit post
-│   ├── post/[postId]/       # Individual post page
-│   ├── profile/[userId]/    # User profile page
-│   ├── search/              # Search results
-│   ├── tag/[tagName]/       # Tag filtering
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
-│   └── globals.css          # Global styles
-├── components/              # Reusable components
-│   ├── Header.tsx           # Navigation header
-│   ├── Footer.tsx           # Page footer
-│   ├── PostCard.tsx         # Post preview card
-│   ├── TextEditor.tsx       # Rich text editor
-│   ├── LikeButton.tsx       # Like/clap button
-│   ├── Comments.tsx         # Comments section
-│   └── SearchBar.tsx        # Search input
-├── hooks/                   # Custom React hooks
-│   ├── usePosts.ts          # Fetch posts
-│   ├── usePostsQuery.ts     # React Query hooks
-│   ├── useUser.ts           # Fetch user data
-│   └── useLike.ts           # Like functionality
-├── lib/                     # Utility functions
-│   ├── firebase.ts          # Firebase config
-│   ├── AuthContext.tsx      # Auth state management
-│   ├── ThemeContext.tsx     # Theme management
-│   └── QueryProvider.tsx    # React Query provider
-├── types/                   # TypeScript types
-│   └── index.ts             # Type definitions
-└── public/                  # Static assets
+├── app/                
+│   ├── login/               
+│   ├── signup/            
+│   ├── write/               
+│   ├── post/[postId]/       
+│   ├── profile/[userId]/    
+│   ├── search/             
+│   ├── tag/[tagName]/       
+│   ├── layout.tsx         
+│   ├── page.tsx            
+│   └── globals.css          
+├── components/              
+│   ├── Header.tsx           
+│   ├── Footer.tsx          
+│   ├── PostCard.tsx        
+│   ├── TextEditor.tsx     
+│   ├── LikeButton.tsx     
+│   ├── Comments.tsx       
+│   └── SearchBar.tsx        
+├── hooks/                   
+│   ├── usePosts.ts          
+│   ├── usePostsQuery.ts     
+│   ├── useUser.ts           
+│   └── useLike.ts           
+├── lib/                     
+│   ├── firebase.ts          
+│   ├── AuthContext.tsx      
+│   ├── ThemeContext.tsx    
+│   └── QueryProvider.tsx    
+├── types/                   
+│   └── index.ts            
+└── public/                  
 ```
 
 ## 🎯 Key Features Explained
