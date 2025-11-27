@@ -79,7 +79,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone https://github.com/yourusername/medium-clone.git
-cd medium-clone
+cd special-blog
 ```
 
 ### 2. Install dependencies
@@ -105,13 +105,7 @@ npm install
 
 Open `lib/firebase.ts` and replace the configuration:
 
-  
-
-### 5. Set up Firestore indexes
-
-After creating your first post, Firebase may prompt you to create indexes. Click the provided link in the console error and create the required indexes.
-
-### 6. Run the development server
+### 5. Run the development server
 
 ```bash
 npm run dev
